@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  {% include 'includes/head.html' %}
+</head>
+<body>
+  {% include 'includes/nav.html' %}
+  {% block heading %}{% endblock %}
+  <div class="container-fluid">
+    {% block content %}{% endblock %}
+  </div>
+  {% include 'includes/scripts.html' %}
+</body>
+</html>

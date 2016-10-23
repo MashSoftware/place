@@ -1,0 +1,16 @@
+<form class="form-horizontal" action="{{request.url}}" method="post">
+  {{ form.csrf_token }}
+  {% for field in form if field.id != 'csrf_token' %}
+    {% if field.errors %}
+    <div class="form-group has-error">
+    {% else %}
+    <div class="form-group">
+    {% endif %}
+    {{ field.label(class_="col-sm-3 control-label") }}
+    <div class="col-sm-9">
+      {{ field(class_="form-control") }}
+    </div>
+  </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary">View</button>
+</form>

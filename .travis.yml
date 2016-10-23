@@ -1,0 +1,17 @@
+language: python
+python:
+- '2.7'
+install:
+- pip install -r requirements.txt
+script:
+- pip install -r requirements_test.txt
+- flake8 .
+deploy:
+  provider: heroku
+  api_key:
+    secure: of1nEYYGS4YKNakbbYliIPoZ+vwgZiL2ipnhLkVwrHSXF9Y/it6Z9z+T37e/pbZ8RB0uIq2n8G330qfZVTDdBaCb3g3uwJk0SUCUuSJOQDc/vwkXbRhA+F9O8dBZ1mYNueaKLvxjDwLsckZaZU5kvgpmjWcvA7kGCagx7QIxP/6Co0ISmCGMholFxBeMkjWU/6+uHHrJOG2/sUeLxucAaNGCekPGRymsEubHVPApHwzunT23SH0HHwbR2Q+Qq9/21MNbcsOt9oqIwBQbOJNG6nfg8ZCQIgd2YWc7XZ9JGlthi4/EzaMoIBrhHoF3JUEJTj5JALOoqOgckFS0KFjIKNsruU3qYNSfMDoqSibYyJE7nI9aVGDsNPLb6AqmZcnS2kKAvFmfXrpDc9OTXLpkeAnDpSskx/y72UlEFSGj+h2VjuYtY5mc3+m/PRZffVRuRK/3Y77ns7A1E+4h2XEOFGgljDUZ4EQy6A/YWVqhjw65rC+7+pJZLTAuNk4qyVHTTZVtEgCQSmID73fPgT+uWZMqimwr30ZBWu/4zNItAMWT14pfTFL1S0WNagmyIMLmxNvscKwAsHqgXdnd+CI+PwSwKLWLM8Ik581YVfxwBDwnqoiW+JoozP3kEOowQps0BXwUY655IjIgrNid2Q7uwtrvTkoSVqRk38dR7OFBTLE=
+  app:
+    master: mash-place
+  on:
+    repo: MashSoftware/place
+sudo: false

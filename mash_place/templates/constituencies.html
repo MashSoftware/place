@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row" style="padding-top:15px">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+        {% include 'includes/form_error.html' %}
+        <div class="panel panel-default">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h5 class="list-group-item-heading">Westminster Constituencies</h5>
+            </div>
+            <div class="list-group-item">
+              {% include 'includes/search_form.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if data %}
+    <div class="row" id="results">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h5 class="list-group-item-heading">Data</h5>
+            </div>
+            <div class="list-group-item">
+              <p><a href="{{config.PLACE_API_URL}}/constituencies/{{data['properties']['ons_code']}}" target="_blank">GeoJSON</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="col-md-8 hidden-xs hidden-sm" style="position:fixed; right:0;">
+    <div class="panel panel-default" style="height:calc(100vh - 95px);">
+      <div class="panel-body" id="map" style="height:100%">
+        <script>
+          var geoJsonFeature = L.geoJSON()
+
+          var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.'
+          });
+
+          var map = L.map('map', { layers: [osm, geoJsonFeature] }).setView([54.525564, -3.921976], 5);
+
+          {% if data %}
+          geoJsonFeature.addData({{data|tojson|safe}}).addTo(map);
+          {% endif %}
+
+
+          map.fitBounds(geoJsonFeature.getBounds());
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
