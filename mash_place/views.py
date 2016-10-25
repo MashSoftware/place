@@ -1,15 +1,16 @@
 from mash_place import app, cache
 from flask import render_template
-from mash_place.models import Constituency
-from mash_place.forms import Search
+from mash_place.models import Constituency, County
+from mash_place.forms import ConstituencyForm, CountyForm
 import json
 
 constituency = Constituency()
+county = County()
 
 
 @app.route('/boundaries/constituencies', methods=["GET", "POST"])
 def constituencies():
-    form = Search()
+    form = ConstituencyForm()
     if form.validate_on_submit():
         data = json.loads(constituency.get_constituency(form.constituency.data))
 
@@ -21,6 +22,24 @@ def constituencies():
 
     return render_template(
         'constituencies.html',
+        form=form
+    )
+
+
+@app.route('/boundaries/counties', methods=["GET", "POST"])
+def counties():
+    form = CountyForm()
+    if form.validate_on_submit():
+        data = json.loads(county.get_county(form.county.data))
+
+        return render_template(
+            'counties.html',
+            data=data,
+            form=form
+        )
+
+    return render_template(
+        'counties.html',
         form=form
     )
 
