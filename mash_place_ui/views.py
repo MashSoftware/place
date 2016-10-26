@@ -1,7 +1,7 @@
-from mash_place import app, cache
+from mash_place_ui import app, cache
 from flask import render_template
-from mash_place.models import Constituency, County
-from mash_place.forms import ConstituencyForm, CountyForm
+from mash_place_ui.models import Constituency, County
+from mash_place_ui.forms import ConstituencyForm, CountyForm
 import json
 
 constituency = Constituency()

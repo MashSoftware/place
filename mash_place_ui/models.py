@@ -1,4 +1,4 @@
-from mash_place import cache, app
+from mash_place_ui import cache, app
 import requests
 
 

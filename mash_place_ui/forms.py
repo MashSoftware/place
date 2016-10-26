@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import SelectField
 from wtforms.validators import DataRequired
-from mash_place.models import Constituency, County
+from mash_place_ui.models import Constituency, County
 import json
 
 constituency = Constituency()

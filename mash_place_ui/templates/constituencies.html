@@ -8,7 +8,7 @@
         <div class="panel panel-default">
           <div class="list-group">
             <div class="list-group-item">
-              <h5 class="list-group-item-heading">Counties</h5>
+              <h5 class="list-group-item-heading">Westminster Constituencies</h5>
             </div>
             <div class="list-group-item">
               {% include 'includes/search_form.html' %}
@@ -26,7 +26,15 @@
               <h5 class="list-group-item-heading">Data</h5>
             </div>
             <div class="list-group-item">
-              <p><a href="{{config.PLACE_API_URL}}/counties/{{data['properties']['ons_code']}}" target="_blank">GeoJSON</a></p>
+              <p><b>ONS Code:</b> {{data['properties']['ons_code']}}</p>
+              <p><b>Name:</b> {{data['properties']['name']}}</p>
+              <p><b>Description:</b> {{data['properties']['description']}}</p>
+              <p><b>Type:</b> {{data['properties']['type']}}</p>
+              <p><b>Hectares:</b> {{data['properties']['hectares']}}</p>
+              <p><b>Attribution:</b> {{data['properties']['attribution']|safe}}</p>
+            </div>
+            <div class="list-group-item">
+              <p><a href="{{config.PLACE_API_URL}}/constituencies/{{data['properties']['ons_code']}}" target="_blank">GeoJSON</a></p>
             </div>
           </div>
         </div>
@@ -48,22 +56,13 @@
             opacity: 1
           };
 
-          function onEachFeature(feature, layer) {
-            if (feature.properties) {
-                layer.bindPopup("<b>Name:</b> " + feature.properties.name + "<br>" +
-                "<b>ONS Code:</b> " + feature.properties.ons_code + "<br>" +
-                "<b>Hectares:</b> " + feature.properties.hectares + "<br>" +
-                "<b>Attribution:</b> " + feature.properties.attribution);
-            }
-          }
-
           {% if data %}
           geoJson = {{data|tojson|safe}}
           var geoJsonFeature = L.geoJSON(geoJson, {
             style: myStyle,
-            onEachFeature: onEachFeature,
             attribution: 'Contains OS data &copy; Crown copyright and database right (2016)'
           }).addTo(map);
+
           map.fitBounds(geoJsonFeature.getBounds());
           {% endif %}
         </script>

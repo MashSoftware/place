@@ -24,4 +24,4 @@ cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 # CSRF Protection
 CsrfProtect(app)
 
-import mash_place.views
+import mash_place_ui.views
