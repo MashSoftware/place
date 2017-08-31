@@ -1,5 +1,6 @@
 # Mash Place UI
 [![Build Status](https://travis-ci.org/MashSoftware/place-ui.svg?branch=master)](https://travis-ci.org/MashSoftware/place-ui)
+[![Requirements Status](https://requires.io/github/MashSoftware/place-ui/requirements.svg?branch=master)](https://requires.io/github/MashSoftware/place-ui/requirements/?branch=master)
 
 ## Getting Started
 
